@@ -6,20 +6,27 @@ class CustomInput extends StatelessWidget {
   final String? hintText;
   final TextInputType? keyboardType;
   final bool? isPassword;
+  final TextEditingController controller;
+  final dynamic validator;
   // fi
   const CustomInput({
     super.key,
     this.hintText,
     this.keyboardType,
     this.isPassword = false,
+    required this.controller,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: keyboardType,
         obscureText: isPassword!,
+        controller: controller,
+        validator: validator,
         decoration: InputDecoration(
           hintText: hintText,
           contentPadding:

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zi_app/core/navigator.dart';
 import 'package:zi_app/features/dashboard/view/dashboard.dart';
+import 'package:zi_app/utils/Spacing.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -94,7 +95,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: AppPadding.defaultPadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -149,6 +150,15 @@ class _SplashScreenState extends State<SplashScreen> {
                     AppNavigator.to(context, const DashboardScreen());
                   },
                   child: const Text('Next'),
+                ),
+              ),
+              20.ph,
+              SizedBox(
+                width: 300,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Calculator'),
                 ),
               )
             ],
