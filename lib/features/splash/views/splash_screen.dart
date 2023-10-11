@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zi_app/colors/app_colors.dart';
 import 'package:zi_app/core/navigator.dart';
 import 'package:zi_app/features/dashboard/view/dashboard.dart';
 import 'package:zi_app/utils/Spacing.dart';
@@ -160,7 +161,26 @@ class _SplashScreenState extends State<SplashScreen> {
                   onPressed: () {},
                   child: const Text('Calculator'),
                 ),
-              )
+              ),
+              20.ph,
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.black,
+                    width: 0.5,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: InkResponse(
+                  onTap: () {
+                    print('Click me');
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
