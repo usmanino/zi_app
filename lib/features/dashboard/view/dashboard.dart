@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:zi_app/colors/app_colors.dart';
 import 'package:zi_app/core/navigator.dart';
 import 'package:zi_app/features/dashboard/view/view_details.dart';
+import 'package:zi_app/features/dashboard/view_model/calculator_view_model.dart';
 import 'package:zi_app/reusables/custom_input.dart';
 import 'package:zi_app/reusables/loading.dart';
 import 'package:zi_app/reusables/loading_overlay_view.dart';
@@ -62,6 +64,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<CalculatorViewModel>(context, listen: false);
+
     return LoadingOverlayView(
       message: 'Loading',
       showOverLay: _isLoading,

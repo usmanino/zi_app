@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zi_app/colors/app_colors.dart';
 import 'package:zi_app/core/navigator.dart';
+import 'package:zi_app/features/dashboard/view/calculator_screen.dart';
 import 'package:zi_app/features/dashboard/view/dashboard.dart';
 import 'package:zi_app/utils/Spacing.dart';
 
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    
     timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       if (value == 10) {
         isComp = false;
@@ -97,91 +99,95 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SafeArea(
         child: Container(
           padding: AppPadding.defaultPadding,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Text(
-                  '$value',
-                  style: GoogleFonts.poppins(
-                    color: Colors.blueAccent,
-                    fontSize: 30,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    '$value',
+                    style: GoogleFonts.poppins(
+                      color: Colors.blueAccent,
+                      fontSize: 30,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 300,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: () {
-                    increment();
-                  },
-                  child: const Text('increment'),
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 300,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: () {
-                    value == 0 ? null : decrement();
-                  },
-                  child: const Text('decrement'),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 300,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => DashboardScreen(),
-                    //   ),
-                    // );
-                    AppNavigator.to(context, const DashboardScreen());
-                  },
-                  child: const Text('Next'),
-                ),
-              ),
-              20.ph,
-              SizedBox(
-                width: 300,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Calculator'),
-                ),
-              ),
-              20.ph,
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.black,
-                    width: 0.5,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: InkResponse(
-                  onTap: () {
-                    print('Click me');
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(Icons.add),
+                SizedBox(
+                  width: 300,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      increment();
+                    },
+                    child: const Text('increment'),
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      value == 0 ? null : decrement();
+                    },
+                    child: const Text('decrement'),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => DashboardScreen(),
+                      //   ),
+                      // );
+                      AppNavigator.to(context, const DashboardScreen());
+                    },
+                    child: const Text('Next'),
+                  ),
+                ),
+                20.ph,
+                SizedBox(
+                  width: 300,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      AppNavigator.to(context, const CalculatorScreen());
+                    },
+                    child: const Text('Calculator'),
+                  ),
+                ),
+                20.ph,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.black,
+                      width: 0.5,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: InkResponse(
+                    onTap: () {
+                      print('Click me');
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.add),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
