@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zi_app/features/dashboard/view_model/calculator_view_model.dart';
+import 'package:zi_app/features/dashboard/view_model/dashboard_view_model.dart';
 import 'package:zi_app/features/splash/views/splash_screen.dart';
 
 void main() {
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<CalculatorViewModel>(
           create: (_) => CalculatorViewModel(),
+        ),
+        ChangeNotifierProvider<DashboardViewModel>(
+          create: (_) => DashboardViewModel(),
         ),
       ],
       child: MaterialApp(

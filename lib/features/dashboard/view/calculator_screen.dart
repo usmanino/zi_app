@@ -20,15 +20,6 @@ class CalculatorScreen extends StatefulWidget {
 class _CalculatorScreenState extends State<CalculatorScreen> {
   final TextEditingController xController = TextEditingController();
   final TextEditingController yController = TextEditingController();
-  // late CalculatorViewModel calculatorViewModel = Provider.of<CalculatorViewModel>(context, listen: false);
-  // late CalculatorViewModel model;
-  // addition() {
-  //   final x = xController.text.trim();
-  //   final y = yController.text.trim();
-  //   setState(() {
-  //     result = (num.parse(x) + num.parse(y)).toString();
-  //   });
-  // }
 
   @override
   void initState() {
@@ -47,12 +38,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<CalculatorViewModel>(context, listen: false);
+    // final model = Provider.of<CalculatorViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
       ),
-      body: Consumer<CalculatorViewModel>(builder: (_, result, __) {
+      body: Consumer<CalculatorViewModel>(builder: (_, model, __) {
         return SafeArea(
             child: Container(
           padding: AppPadding.defaultPadding,
@@ -107,7 +98,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     ),
                     OpratorButton(
                       child: const Icon(Icons.remove),
-                      onTap: () {},
+                      onTap: () {
+                        model.sub(xController.text, yController.text);
+                      },
                     ),
                     OpratorButton(
                       child: const Icon(Icons.clear),
@@ -133,17 +126,44 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 ),
                 20.ph,
                 Text(
-                  'Result: ${result.result}',
+                  model.result,
                   style: GoogleFonts.montserrat(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
-                )
+                ),
+                20.ph,
               ],
             ),
           ),
         ));
       }),
+    );
+  }
+}
+
+class TextButton extends StatelessWidget {
+  final String? text;
+  final Color? bgColor;
+  const TextButton({
+    super.key,
+    this.text,
+    this.bgColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      width: 200,
+      decoration: BoxDecoration(
+        color: bgColor ?? AppColors.accentColor,
+      ),
+      child: Center(
+        child: Text(
+          text ?? 'Market',
+        ),
+      ),
     );
   }
 }
